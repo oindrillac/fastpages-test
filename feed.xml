@@ -1,1 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://oindrillac.github.io/fastpages-test/feed.xml" rel="self" type="application/atom+xml" /><link href="https://oindrillac.github.io/fastpages-test/" rel="alternate" type="text/html" /><updated>2020-07-16T12:35:36-05:00</updated><id>https://oindrillac.github.io/fastpages-test/feed.xml</id><title type="html">Test Blog Site</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://oindrillac.github.io/fastpages-test/feed.xml" rel="self" type="application/atom+xml" /><link href="https://oindrillac.github.io/fastpages-test/" rel="alternate" type="text/html" /><updated>2020-07-16T12:41:46-05:00</updated><id>https://oindrillac.github.io/fastpages-test/feed.xml</id><title type="html">Test Blog Site</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">Test Blog</title><link href="https://oindrillac.github.io/fastpages-test/2020/07/16/test-blog.html" rel="alternate" type="text/html" title="Test Blog" /><published>2020-07-16T00:00:00-05:00</published><updated>2020-07-16T00:00:00-05:00</updated><id>https://oindrillac.github.io/fastpages-test/2020/07/16/test-blog</id><content type="html" xml:base="https://oindrillac.github.io/fastpages-test/2020/07/16/test-blog.html">&lt;h1 id=&quot;title&quot;&gt;Title&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Author(s) :&lt;/strong&gt; &lt;em&gt;xyz (xyz@redhat.com)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Date Created :&lt;/strong&gt; &lt;em&gt;Date when the document was created&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Date Updated :&lt;/strong&gt; &lt;em&gt;Date when the document was last updated&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags:&lt;/strong&gt; &lt;em&gt;Relevant Tags&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;abstract&quot;&gt;&lt;em&gt;Abstract&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;This section describes the project in a way that will be appealing to the end-users. Try using basic language that is understandable by all audiences.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;problem-statement&quot;&gt;&lt;em&gt;Problem Statement&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;In as direct terms as possible, provide the “Data Science” problem statement version of the overview. Think of this as translating the above into a more technical definition.  {Reference : https://docs.google.com/document/d/1LqVXQbd81IdPfoXw2B0iCcnb-ygCVvdy_8vejY08zZ4/edit?usp=sharing[Data Science Projects Structure for AI Ops-v1] }&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;methodologyapproach&quot;&gt;&lt;em&gt;Methodology/Approach&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Brief explanation of the Data Science methods used in the process and observations of each approach. Focus mainly on the theoretical segments. The explanation of the code and segments can be covered in the video.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;&lt;em&gt;Results&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Hue/Superset/Tableau dashboards&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Plots and/or charts&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;get-started&quot;&gt;&lt;em&gt;Get Started&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;[Video link to demo]&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Prerequisites:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Familiarity with language or environment&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Access to resources&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Steps to get you started:&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Step by step guide to get one started with the demo&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;how-to-contribute--provide-feedback&quot;&gt;&lt;em&gt;How to Contribute / Provide feedback&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;You can open up a PR on the Git Repository highlighting the feature or issue, and we will address it.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;You can also reach out to the author of the blog for any questions.&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;For providing your feedback on this workflow and blog please fill out this Google Form (link to Google Form).&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;additional-resources&quot;&gt;&lt;em&gt;Additional Resources&lt;/em&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Git Repo&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Trello Board&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Hue/Superset Dashboards&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;MLFlow dashboard&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;&lt;em&gt;References&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Any references or citations used in the introduction&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Title</summary></entry></feed>

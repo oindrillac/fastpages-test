@@ -1,11 +1,22 @@
 {
   
+    
+        "post0": {
+            "title": "Test Blog",
+            "content": "Title . Author(s) : xyz (xyz@redhat.com) . Date Created : Date when the document was created . Date Updated : Date when the document was last updated . Tags: Relevant Tags . Abstract . This section describes the project in a way that will be appealing to the end-users. Try using basic language that is understandable by all audiences. . Problem Statement . In as direct terms as possible, provide the “Data Science” problem statement version of the overview. Think of this as translating the above into a more technical definition. {Reference : https://docs.google.com/document/d/1LqVXQbd81IdPfoXw2B0iCcnb-ygCVvdy_8vejY08zZ4/edit?usp=sharing[Data Science Projects Structure for AI Ops-v1] } . Methodology/Approach . Brief explanation of the Data Science methods used in the process and observations of each approach. Focus mainly on the theoretical segments. The explanation of the code and segments can be covered in the video. . Results . Hue/Superset/Tableau dashboards | Plots and/or charts | . Get Started . [Video link to demo] . Prerequisites: . Familiarity with language or environment | Access to resources | . Steps to get you started: . Step by step guide to get one started with the demo . How to Contribute / Provide feedback . You can open up a PR on the Git Repository highlighting the feature or issue, and we will address it. | You can also reach out to the author of the blog for any questions. | For providing your feedback on this workflow and blog please fill out this Google Form (link to Google Form). | . Additional Resources . Git Repo | Trello Board | Hue/Superset Dashboards | MLFlow dashboard | . References . Any references or citations used in the introduction .",
+            "url": "https://oindrillac.github.io/fastpages-test/2020/07/16/test-blog.html",
+            "relUrl": "/2020/07/16/test-blog.html",
+            "date": " • Jul 16, 2020"
+        }
+        
+    
+  
 
   
   
 
   
-      "page1": {
+      ,"page1": {
           "title": "About Me",
           "content": "This is where you put the contents of your About page. Like all your pages, it’s in Markdown format. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://oindrillac.github.io/fastpages-test/about/",
