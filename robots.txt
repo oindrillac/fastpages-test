@@ -1,0 +1,1 @@
+Sitemap: https://oindrillac.github.io/fastpages-test/sitemap.xml
