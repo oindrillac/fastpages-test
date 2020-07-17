@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sentiment Analysis of Tweets using BERT | Test Blog Site</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sentiment Analysis of Tweets using BERT" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
+<meta property="og:description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
+<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:site_name" content="Test Blog Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-17T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/fastpages-test/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oindrillac.github.io/fastpages-test/feed.xml" title="Test Blog Site" /><link rel="shortcut icon" type="image/x-icon" href="/fastpages-test/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sentiment Analysis of Tweets using BERT | Test Blog Site</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sentiment Analysis of Tweets using BERT" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
+<meta property="og:description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
+<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:site_name" content="Test Blog Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-17T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://oindrillac.github.io/fastpages-test/feed.xml" title="Test Blog Site" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/fastpages-test/">Test Blog Site</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/fastpages-test/about/">About Me</a><a class="page-link" href="/fastpages-test/search/">Search</a><a class="page-link" href="/fastpages-test/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Sentiment Analysis of Tweets using BERT</h1><p class="page-description">In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-17T00:00:00-05:00" itemprop="datePublished">
+        Jul 17, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#fastpages">fastpages</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/oindrillac/fastpages-test/tree/master/_notebooks/2020-07-17-sentiment-analysis-demo.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/fastpages-test/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/oindrillac/fastpages-test/master?filepath=_notebooks%2F2020-07-17-sentiment-analysis-demo.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages-test/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/oindrillac/fastpages-test/blob/master/_notebooks/2020-07-17-sentiment-analysis-demo.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/fastpages-test/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-07-17-sentiment-analysis-demo.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First ,we will download the pre trained model and files required which allow us to use it easily.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip -P models/bert
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--2020-07-17 16:28:07--  https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
+Resolving storage.googleapis.com (storage.googleapis.com)... 172.217.13.80, 172.217.13.240, 172.217.12.240, ...
+Connecting to storage.googleapis.com (storage.googleapis.com)|172.217.13.80|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 407727028 (389M) [application/zip]
+Saving to: ‘models/bert/uncased_L-12_H-768_A-12.zip’
+
+43% [===============&gt;                       ] 176,168,960 88.8MB/s             ^C
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">fileinput</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">import</span> <span class="nn">mlflow</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;models/bert&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">modeling</span>
+<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">optimization</span>
+<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">run_classifier</span>
+<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">tokenization</span>
+
+<span class="c1">#extracting the downloaded model</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;models/bert&#39;</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;models/bert/uncased_L-12_H-768_A-12.zip&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we initalize the MLFlow client in the following step so that we can track our run and the results</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MLFLOW_CLIENT</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">tracking</span><span class="o">.</span><span class="n">MlflowClient</span><span class="p">(</span><span class="n">tracking_uri</span><span class="o">=</span><span class="s1">&#39;http://mlflow-server-route-aiops-prod-prometheus-scrape.cloud.paas.psi.redhat.com&#39;</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_tracking_uri</span><span class="p">(</span><span class="s2">&quot;http://mlflow-server-route-aiops-prod-prometheus-scrape.cloud.paas.psi.redhat.com&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s1">&#39;sentiment_analysis_test_0.1&#39;</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">&quot;airline_tweets-trialrun-same-artifacts&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mlflow_run_id</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mlflow_run_id</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="BERT-implementation">BERT implementation<a class="anchor-link" href="#BERT-implementation"> </a></h1><p>We are going to use Google's pre trained BERT for our classification tasks. 
+Apart from the model itself we also directly use Google's scripts to run our classifier which enables us to use the model for our data specifically.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Loading and Cleaning data</h2><p>First we load up our data in the csv format into a pandas dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tweets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset/Tweets.csv&#39;</span><span class="p">)</span>
+
+<span class="c1">#Shuffling the data</span>
+<span class="n">tweets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Preprocessing tweets</h2><p>We perfrom some basic cleaning on our text data using regular expressions.
+We then split our data into test and training sets.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tweets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">tweets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="c1">#preprocessing </span>
+<span class="n">processed_features</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>
+    <span class="c1">#Getting rid of special characters</span>
+    <span class="n">processed_feature</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\W&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">sentence</span><span class="p">]))</span>
+    <span class="c1"># remove all single characters</span>
+    <span class="n">processed_feature</span><span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+[a-zA-Z]\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">processed_feature</span><span class="p">)</span>
+    <span class="c1"># Remove single characters from the start</span>
+    <span class="n">processed_feature</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\^[a-zA-Z]\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">processed_feature</span><span class="p">)</span> 
+    <span class="c1"># Substituting multiple spaces with single space</span>
+    <span class="n">processed_feature</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">processed_feature</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+    <span class="c1"># Removing prefixed &#39;b&#39;</span>
+    <span class="n">processed_feature</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^b\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">processed_feature</span><span class="p">)</span>
+    <span class="c1"># Converting to Lowercase</span>
+    <span class="n">processed_feature</span> <span class="o">=</span> <span class="n">processed_feature</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">processed_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">processed_feature</span><span class="p">)</span>
+
+<span class="c1">#Splitting the data </span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">processed_features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mapping the emotions to numbers for the training and inference step</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;negative&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;neutral&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_test</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="n">y_test</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Loading the model</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;models/bert&#39;</span>
+<span class="n">BERT_MODEL</span> <span class="o">=</span> <span class="s1">&#39;uncased_L-12_H-768_A-12&#39;</span>
+<span class="n">BERT_PRETRAINED_DIR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">/uncased_L-12_H-768_A-12&#39;</span>
+<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">/outputs&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt; Model output directory: </span><span class="si">{</span><span class="n">OUTPUT_DIR</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt;  BERT pretrained directory: </span><span class="si">{</span><span class="n">BERT_PRETRAINED_DIR</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># keep track of the model name as a mlflow run tag</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_tag</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2> Training the model</h2><p>Now that we have our data ready for use we move on the next step i.e training the model on our data.Since we alrady have the pre-learned weights on the model we can get good results by training the model on our data for just a few epochs.</p>
+<p>We first start by intializing our model and transforming our data ready for consumption by the model</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">create_examples</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="c1">#Generate data for the BERT model. We nned data in this format before being fed for training</span>
+    <span class="n">guid</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">set_type</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">examples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">guid</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="n">text_a</span> <span class="o">=</span> <span class="n">line</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+              <span class="n">run_classifier</span><span class="o">.</span><span class="n">InputExample</span><span class="p">(</span><span class="n">guid</span><span class="o">=</span><span class="n">guid</span><span class="p">,</span> <span class="n">text_a</span><span class="o">=</span><span class="n">text_a</span><span class="p">,</span> <span class="n">text_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">text_a</span> <span class="o">=</span> <span class="n">line</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+            <span class="n">examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+              <span class="n">run_classifier</span><span class="o">.</span><span class="n">InputExample</span><span class="p">(</span><span class="n">guid</span><span class="o">=</span><span class="n">guid</span><span class="p">,</span> <span class="n">text_a</span><span class="o">=</span><span class="n">text_a</span><span class="p">,</span> <span class="n">text_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">examples</span>
+
+<span class="c1"># Model Hyper Parameters</span>
+<span class="n">TRAIN_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">EVAL_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">NUM_TRAIN_EPOCHS</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">WARMUP_PROPORTION</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1">#We need this to be a little lower thant the max length of tweets we have </span>
+<span class="n">MAX_SEQ_LENGTH</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="c1"># Model configs</span>
+<span class="n">SAVE_CHECKPOINTS_STEPS</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1">#if you wish to finetune a model on a larger dataset, use larger interval</span>
+<span class="c1"># each checpoint weights about 1,5gb</span>
+<span class="n">ITERATIONS_PER_LOOP</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">NUM_TPU_CORES</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">VOCAB_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BERT_PRETRAINED_DIR</span><span class="p">,</span> <span class="s1">&#39;vocab.txt&#39;</span><span class="p">)</span>
+<span class="n">CONFIG_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BERT_PRETRAINED_DIR</span><span class="p">,</span> <span class="s1">&#39;bert_config.json&#39;</span><span class="p">)</span>
+<span class="n">INIT_CHECKPOINT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BERT_PRETRAINED_DIR</span><span class="p">,</span> <span class="s1">&#39;bert_model.ckpt&#39;</span><span class="p">)</span>
+<span class="n">DO_LOWER_CASE</span> <span class="o">=</span> <span class="n">BERT_MODEL</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;uncased&#39;</span><span class="p">)</span>
+
+<span class="n">label_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenization</span><span class="o">.</span><span class="n">FullTokenizer</span><span class="p">(</span><span class="n">vocab_file</span><span class="o">=</span><span class="n">VOCAB_FILE</span><span class="p">,</span> <span class="n">do_lower_case</span><span class="o">=</span><span class="n">DO_LOWER_CASE</span><span class="p">)</span>
+<span class="n">train_examples</span> <span class="o">=</span> <span class="n">create_examples</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">tpu_cluster_resolver</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#Since training will happen on GPU, we won&#39;t need a cluster resolver</span>
+<span class="c1">#TPUEstimator also supports training on CPU and GPU. You don&#39;t need to define a separate tf.estimator.Estimator.</span>
+<span class="n">run_config</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">RunConfig</span><span class="p">(</span>
+    <span class="n">cluster</span><span class="o">=</span><span class="n">tpu_cluster_resolver</span><span class="p">,</span>
+    <span class="n">model_dir</span><span class="o">=</span><span class="n">OUTPUT_DIR</span><span class="p">,</span>
+    <span class="n">save_checkpoints_steps</span><span class="o">=</span><span class="n">SAVE_CHECKPOINTS_STEPS</span><span class="p">,</span>
+    <span class="n">tpu_config</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">TPUConfig</span><span class="p">(</span>
+        <span class="n">iterations_per_loop</span><span class="o">=</span><span class="n">ITERATIONS_PER_LOOP</span><span class="p">,</span>
+        <span class="n">num_shards</span><span class="o">=</span><span class="n">NUM_TPU_CORES</span><span class="p">,</span>
+        <span class="n">per_host_input_for_training</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">InputPipelineConfig</span><span class="o">.</span><span class="n">PER_HOST_V2</span><span class="p">))</span>
+
+<span class="n">num_train_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">train_examples</span><span class="p">)</span> <span class="o">/</span> <span class="n">TRAIN_BATCH_SIZE</span> <span class="o">*</span> <span class="n">NUM_TRAIN_EPOCHS</span><span class="p">)</span>
+<span class="n">num_warmup_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_train_steps</span> <span class="o">*</span> <span class="n">WARMUP_PROPORTION</span><span class="p">)</span>
+
+<span class="n">model_fn</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">model_fn_builder</span><span class="p">(</span>
+    <span class="n">bert_config</span><span class="o">=</span><span class="n">modeling</span><span class="o">.</span><span class="n">BertConfig</span><span class="o">.</span><span class="n">from_json_file</span><span class="p">(</span><span class="n">CONFIG_FILE</span><span class="p">),</span>
+    <span class="n">num_labels</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">label_list</span><span class="p">),</span>
+    <span class="n">init_checkpoint</span><span class="o">=</span><span class="n">INIT_CHECKPOINT</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="n">LEARNING_RATE</span><span class="p">,</span>
+    <span class="n">num_train_steps</span><span class="o">=</span><span class="n">num_train_steps</span><span class="p">,</span>
+    <span class="n">num_warmup_steps</span><span class="o">=</span><span class="n">num_warmup_steps</span><span class="p">,</span>
+    <span class="n">use_tpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#If False training will fall on CPU or GPU, depending on what is available  </span>
+    <span class="n">use_one_hot_embeddings</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">TPUEstimator</span><span class="p">(</span>
+    <span class="n">use_tpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1">#If False training will fall on CPU or GPU, depending on what is available </span>
+    <span class="n">model_fn</span><span class="o">=</span><span class="n">model_fn</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">run_config</span><span class="p">,</span>
+    <span class="n">train_batch_size</span><span class="o">=</span><span class="n">TRAIN_BATCH_SIZE</span><span class="p">,</span>
+    <span class="n">eval_batch_size</span><span class="o">=</span><span class="n">EVAL_BATCH_SIZE</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Logging parameters into MLFlow</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># log parameters before run</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;TRAIN_BATCH_SIZE&quot;</span><span class="p">,</span> <span class="n">TRAIN_BATCH_SIZE</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;EVAL_BATCH_SIZE&quot;</span><span class="p">,</span> <span class="n">EVAL_BATCH_SIZE</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;LEARNING_RATE&quot;</span><span class="p">,</span> <span class="n">LEARNING_RATE</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;NUM_TRAIN_EPOCHS&quot;</span><span class="p">,</span> <span class="n">NUM_TRAIN_EPOCHS</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;WARMUP_PROPORTION&quot;</span><span class="p">,</span> <span class="n">WARMUP_PROPORTION</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;MAX_SEQ_LENGTH&quot;</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;SAVE_CHECKPOINTS_STEPS&quot;</span><span class="p">,</span> <span class="n">SAVE_CHECKPOINTS_STEPS</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;ITERATIONS_PER_LOOP&quot;</span><span class="p">,</span> <span class="n">ITERATIONS_PER_LOOP</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Training</h2><p>We now train our model accroding to the previously designed hyper-parameters</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please wait...&#39;</span><span class="p">)</span>
+<span class="n">train_features</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">convert_examples_to_features</span><span class="p">(</span>
+    <span class="n">train_examples</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt; Started training at </span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Num examples = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_examples</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Batch size = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">TRAIN_BATCH_SIZE</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;  Num steps = </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">num_train_steps</span><span class="p">)</span>
+<span class="n">train_input_fn</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">input_fn_builder</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">train_features</span><span class="p">,</span>
+    <span class="n">seq_length</span><span class="o">=</span><span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span>
+    <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">drop_remainder</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">train_input_fn</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="n">num_train_steps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt; Finished training at </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Started training at 2020-03-02 21:59:02.759879</p>
+<p>Finished training at 2020-03-02 23:11:47.571450</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Export-and-save-model-Variables-and-Protobuf">Export and save model Variables and Protobuf<a class="anchor-link" href="#Export-and-save-model-Variables-and-Protobuf"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">serving_model_save_path</span> <span class="o">=</span> <span class="s1">&#39;models/saved_models&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">serving_input_receiver_fn</span><span class="p">():</span>
+    <span class="n">input_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input_ids&#39;</span><span class="p">)</span>
+    <span class="n">input_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;input_mask&#39;</span><span class="p">)</span>
+    <span class="n">segment_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;segment_ids&#39;</span><span class="p">)</span>
+    <span class="n">label_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;unique_ids&#39;</span><span class="p">)</span>
+
+    <span class="n">receive_tensors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_ids&#39;</span><span class="p">:</span> <span class="n">input_ids</span><span class="p">,</span> <span class="s1">&#39;input_mask&#39;</span><span class="p">:</span> <span class="n">input_mask</span><span class="p">,</span> <span class="s1">&#39;segment_ids&#39;</span><span class="p">:</span> <span class="n">segment_ids</span><span class="p">,</span>
+                       <span class="s1">&#39;label_ids&#39;</span><span class="p">:</span> <span class="n">label_ids</span><span class="p">}</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_ids&#39;</span><span class="p">:</span> <span class="n">input_ids</span><span class="p">,</span> <span class="s1">&#39;input_mask&#39;</span><span class="p">:</span> <span class="n">input_mask</span><span class="p">,</span> <span class="s1">&#39;segment_ids&#39;</span><span class="p">:</span> <span class="n">segment_ids</span><span class="p">,</span> <span class="s2">&quot;label_ids&quot;</span><span class="p">:</span> <span class="n">label_ids</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">export</span><span class="o">.</span><span class="n">ServingInputReceiver</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">receive_tensors</span><span class="p">)</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">_export_to_tpu</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">export_saved_model</span><span class="p">(</span><span class="n">serving_model_save_path</span><span class="p">,</span> <span class="n">serving_input_receiver_fn</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Predicting and Evaluating</h2><p>Now that our training step is complete in the next steps we will use what our model learned to make predictions on the dataset. We will then evaluate our results</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">input_fn_builder</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">,</span> <span class="n">is_training</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Creates an `input_fn` closure to be passed to TPUEstimator.&quot;&quot;&quot;</span>
+
+  <span class="n">all_input_ids</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">all_input_mask</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">all_segment_ids</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">all_label_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">all_input_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">input_ids</span><span class="p">)</span>
+    <span class="n">all_input_mask</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">input_mask</span><span class="p">)</span>
+    <span class="n">all_segment_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">segment_ids</span><span class="p">)</span>
+    <span class="n">all_label_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">label_id</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">input_fn</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The actual input function.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">num_examples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">({</span>
+        <span class="s2">&quot;input_ids&quot;</span><span class="p">:</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span>
+                <span class="n">all_input_ids</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_examples</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="s2">&quot;input_mask&quot;</span><span class="p">:</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span>
+                <span class="n">all_input_mask</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_examples</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="s2">&quot;segment_ids&quot;</span><span class="p">:</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span>
+                <span class="n">all_segment_ids</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_examples</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">],</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+        <span class="s2">&quot;label_ids&quot;</span><span class="p">:</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">all_label_ids</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_examples</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+    <span class="p">})</span>
+
+    <span class="k">if</span> <span class="n">is_training</span><span class="p">:</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="o">=</span><span class="n">drop_remainder</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+  <span class="k">return</span> <span class="n">input_fn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predict_examples</span> <span class="o">=</span> <span class="n">create_examples</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+
+<span class="n">predict_features</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">convert_examples_to_features</span><span class="p">(</span>
+    <span class="n">predict_examples</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+
+<span class="n">predict_input_fn</span> <span class="o">=</span> <span class="n">input_fn_builder</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">predict_features</span><span class="p">,</span>
+    <span class="n">seq_length</span><span class="o">=</span><span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span>
+    <span class="n">is_training</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">drop_remainder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">predict_input_fn</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+      <span class="n">preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">prediction</span><span class="p">[</span><span class="s1">&#39;probabilities&#39;</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of BERT is:&quot;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Accuracy of BERT is: 0.7990654205607477</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1 Score of BERT is:&quot;</span><span class="p">,</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;macro&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>F1 Score of BERT is: 0.660558251784892</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outputframe</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">sentence</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">old_model_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">pred_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">preds</span><span class="p">)))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Saving our output into a csv for further analysis.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outputframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/airline_tweets.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_Precision &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_recall &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_f1-score &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_support &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Accuracy &quot;</span><span class="p">,</span>  <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;0_Precision &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;0_recall &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;0_f1-score &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;0_support &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;1_Precision &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;1_recall &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;1_f1-score &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;1_support &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;2_Precision &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;2_recall &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">])</span> 
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;2_f1-score &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">])</span>
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;2_support &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">])</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mlflow</span><span class="o">.</span><span class="n">end_run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="oindrillac/fastpages-test"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/fastpages-test/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/fastpages-test/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/fastpages-test/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/fastpages-test/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/fastpages-test/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
