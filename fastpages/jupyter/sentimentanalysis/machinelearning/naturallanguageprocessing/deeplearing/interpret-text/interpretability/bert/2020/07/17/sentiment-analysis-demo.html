@@ -9,13 +9,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
 <meta property="og:description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
-<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
-<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html" />
 <meta property="og:site_name" content="Test Blog Site" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-17T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
+{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/fastpages-test/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://oindrillac.github.io/fastpages-test/feed.xml" title="Test Blog Site" /><link rel="shortcut icon" type="image/x-icon" href="/fastpages-test/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Sentiment Analysis of Tweets using BERT | Test Blog Site</title>
@@ -24,13 +24,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
 <meta property="og:description" content="In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral." />
-<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
-<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" />
+<link rel="canonical" href="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html" />
+<meta property="og:url" content="https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html" />
 <meta property="og:site_name" content="Test Blog Site" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-17T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
+{"description":"In this notebook we will go through the process of classiying tweets(or any text data for that matter) into positive,negative or neutral.","@type":"BlogPosting","headline":"Sentiment Analysis of Tweets using BERT","dateModified":"2020-07-17T00:00:00-05:00","url":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html","datePublished":"2020-07-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://oindrillac.github.io/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -91,7 +91,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      13 min read
     
 </span></p>
 
@@ -102,6 +102,27 @@ window.onload = wrap_img;
         &nbsp;
       
         <a class="category-tags-link" href="/fastpages-test/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#sentimentanalysis">sentimentanalysis</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#machinelearning">machinelearning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#naturallanguageprocessing">naturallanguageprocessing</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#deeplearing">deeplearing</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#interpret-text">interpret-text</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#interpretability">interpretability</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/fastpages-test/categories/#bert">bert</a>
         
       
       </p>
@@ -150,7 +171,31 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>First ,we will download the pre trained model and files required which allow us to use it easily.</p>
+<h1 id="Abstract">Abstract<a class="anchor-link" href="#Abstract"> </a></h1><p>Sentiment Analysis is the automated process of analyzing text data and sorting it into sentiments depending on the problem statement. The ability to extract insights from this type of data is a practice that is widely adopted by many organisations across the world. Its applications are broad and powerful. A very important use case for sentiment analysis is brand reputation management.</p>
+<p>Red Hat has a variety of text based artifacts coming from sources starting from partner and customer engagements to documentation and communication logs. These text based artifacts are valuable and can be used to generate business insights and inform decisions if appropriately mined. The goal of this project is to allow other teams across Red Hat to have a tool at their disposal allowing them to analyze their text data and make informed decisions based on the insights gained from them. In this blog post we take a public dataset as an example to walk through the work flow.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement"> </a></h1><p>The goal is to make a deep learning model which can classify emotion in a given sentence.</p>
+<p>We do this by making use of transfer learning on the BERT model architecture. So that this can be used as a sample workflow, we take publicly available data as an example, as the original workflow consists of sensitive data. We also discuss interpreting BERT using the Unified Information Explainer algorithm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Methodology">Methodology<a class="anchor-link" href="#Methodology"> </a></h1><p>Given a text our goal is to predict whether it conveys a positive, negative or neutral emotion. Hence we want to build a text classifier for our data. There are various approaches to perform this task but for our project we pick the approach used in most state-of-the-art textual analysis systems i.e. deep learning.</p>
+<p>To construct a deep learning model which is very accurate we require huge amounts of data and compute resources. But luckily for us models like <a href="https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html">BERT</a> are pre trained on large amounts of data and made publicly available. Therefore we can fine tune an already pre trained model like BERT on our own data to leverage what the model has already learnt. This process is called <a href="https://en.wikipedia.org/wiki/Transfer_learning">transfer learning</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, we will download the pre trained model and files required which allow us to use it easily.</p>
 
 </div>
 </div>
@@ -158,17 +203,22 @@ window.onload = wrap_img;
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip -P models/bert
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="o">!</span>wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip -P models/bert
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 <div class="output_wrapper">
 <div class="output">
 
@@ -187,50 +237,6 @@ Saving to: ‘models/bert/uncased_L-12_H-768_A-12.zip’
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">gc</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">fileinput</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
-<span class="kn">import</span> <span class="nn">mlflow</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;models/bert&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">modeling</span>
-<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">optimization</span>
-<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">run_classifier</span>
-<span class="kn">from</span> <span class="nn">models.bert</span> <span class="kn">import</span> <span class="n">tokenization</span>
-
-<span class="c1">#extracting the downloaded model</span>
-<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;models/bert&#39;</span>
-<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;models/bert/uncased_L-12_H-768_A-12.zip&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
-    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -297,23 +303,6 @@ Saving to: ‘models/bert/uncased_L-12_H-768_A-12.zip’
 </div>
     
 
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mlflow_run_id</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="BERT-implementation">BERT implementation<a class="anchor-link" href="#BERT-implementation"> </a></h1><p>We are going to use Google's pre trained BERT for our classification tasks. 
@@ -324,7 +313,279 @@ Apart from the model itself we also directly use Google's scripts to run our cla
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>Loading and Cleaning data</h2><p>First we load up our data in the csv format into a pandas dataframe.</p>
+<h2 id="Exploring-the-dataset">Exploring the dataset<a class="anchor-link" href="#Exploring-the-dataset"> </a></h2><p>For our demo we make use of the Twitter US Airline Sentiment public <a href="https://www.kaggle.com/crowdflower/twitter-airline-sentiment">dataset</a> . This dataset consists of tweets directed at six US airlines with each of them classified into neutral, positive or negative.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Loading-and-Cleaning-data">Loading and Cleaning data<a class="anchor-link" href="#Loading-and-Cleaning-data"> </a></h3><p>First we load up our data in the csv format into a pandas dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="n">tweets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset/Tweets.csv&#39;</span><span class="p">)</span>
+
+<span class="c1">#Shuffling the data</span>
+<span class="n">tweets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tweet_id</th>
+      <th>airline_sentiment</th>
+      <th>airline_sentiment_confidence</th>
+      <th>negativereason</th>
+      <th>negativereason_confidence</th>
+      <th>airline</th>
+      <th>airline_sentiment_gold</th>
+      <th>name</th>
+      <th>negativereason_gold</th>
+      <th>retweet_count</th>
+      <th>text</th>
+      <th>tweet_coord</th>
+      <th>tweet_created</th>
+      <th>tweet_location</th>
+      <th>user_timezone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>77</th>
+      <td>569940323746516993</td>
+      <td>neutral</td>
+      <td>1.0000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Virgin America</td>
+      <td>NaN</td>
+      <td>TaylorLumsden</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@VirginAmerica first time flying you all. do y...</td>
+      <td>NaN</td>
+      <td>2015-02-23 11:22:16 -0800</td>
+      <td>Dallas, Texas</td>
+      <td>Mountain Time (US &amp; Canada)</td>
+    </tr>
+    <tr>
+      <th>9418</th>
+      <td>569943857418399746</td>
+      <td>negative</td>
+      <td>1.0000</td>
+      <td>Customer Service Issue</td>
+      <td>0.6772</td>
+      <td>US Airways</td>
+      <td>NaN</td>
+      <td>thomashoward88</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@USAirways US 728 stated their issues as: no o...</td>
+      <td>NaN</td>
+      <td>2015-02-23 11:36:19 -0800</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8703</th>
+      <td>567935527481188352</td>
+      <td>neutral</td>
+      <td>1.0000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Delta</td>
+      <td>NaN</td>
+      <td>ToTravelToLive</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@JetBlue Anywhere warm cause its freezing in NYC</td>
+      <td>NaN</td>
+      <td>2015-02-17 22:35:56 -0800</td>
+      <td>NYC</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>569941957490774016</td>
+      <td>positive</td>
+      <td>1.0000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Virgin America</td>
+      <td>NaN</td>
+      <td>TaylorLumsden</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@VirginAmerica awesome. I flew yall Sat mornin...</td>
+      <td>NaN</td>
+      <td>2015-02-23 11:28:46 -0800</td>
+      <td>Dallas, Texas</td>
+      <td>Mountain Time (US &amp; Canada)</td>
+    </tr>
+    <tr>
+      <th>13267</th>
+      <td>569900784965554176</td>
+      <td>negative</td>
+      <td>0.7123</td>
+      <td>Flight Booking Problems</td>
+      <td>0.7123</td>
+      <td>American</td>
+      <td>NaN</td>
+      <td>milz02315</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@AmericanAir Can you add my KTN to an existing...</td>
+      <td>NaN</td>
+      <td>2015-02-23 08:45:10 -0800</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12962</th>
+      <td>569972985521532929</td>
+      <td>negative</td>
+      <td>1.0000</td>
+      <td>Customer Service Issue</td>
+      <td>1.0000</td>
+      <td>American</td>
+      <td>NaN</td>
+      <td>T_Lubinski</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@AmericanAir Trying to get my flight changed t...</td>
+      <td>NaN</td>
+      <td>2015-02-23 13:32:03 -0800</td>
+      <td>Boston, MA</td>
+      <td>Eastern Time (US &amp; Canada)</td>
+    </tr>
+    <tr>
+      <th>11773</th>
+      <td>567767738886545408</td>
+      <td>negative</td>
+      <td>1.0000</td>
+      <td>Customer Service Issue</td>
+      <td>1.0000</td>
+      <td>US Airways</td>
+      <td>NaN</td>
+      <td>izzyflan</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@USAirways never in my life have I dealt with ...</td>
+      <td>NaN</td>
+      <td>2015-02-17 11:29:12 -0800</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9205</th>
+      <td>570068659193950208</td>
+      <td>neutral</td>
+      <td>1.0000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>US Airways</td>
+      <td>NaN</td>
+      <td>EverettWJones</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@USAirways thank you.</td>
+      <td>NaN</td>
+      <td>2015-02-23 19:52:14 -0800</td>
+      <td>NaN</td>
+      <td>Quito</td>
+    </tr>
+    <tr>
+      <th>1283</th>
+      <td>569853646411661314</td>
+      <td>negative</td>
+      <td>1.0000</td>
+      <td>Late Flight</td>
+      <td>1.0000</td>
+      <td>United</td>
+      <td>NaN</td>
+      <td>crog</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>.@united You may "dislike delays" but I paid y...</td>
+      <td>NaN</td>
+      <td>2015-02-23 05:37:51 -0800</td>
+      <td>NaN</td>
+      <td>Mountain Time (US &amp; Canada)</td>
+    </tr>
+    <tr>
+      <th>11899</th>
+      <td>570304633048047616</td>
+      <td>neutral</td>
+      <td>0.6529</td>
+      <td>NaN</td>
+      <td>0.0000</td>
+      <td>American</td>
+      <td>NaN</td>
+      <td>AesaGaming</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>@AmericanAir Do you have any sort of live chat...</td>
+      <td>NaN</td>
+      <td>2015-02-24 11:29:54 -0800</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have the following columns in our data:</p>
 
 </div>
 </div>
@@ -336,10 +597,107 @@ Apart from the model itself we also directly use Google's scripts to run our cla
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tweets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset/Tweets.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">tweets</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> 
+</pre></div>
 
-<span class="c1">#Shuffling the data</span>
-<span class="n">tweets</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;tweet_id&#39;,
+ &#39;airline_sentiment&#39;,
+ &#39;airline_sentiment_confidence&#39;,
+ &#39;negativereason&#39;,
+ &#39;negativereason_confidence&#39;,
+ &#39;airline&#39;,
+ &#39;airline_sentiment_gold&#39;,
+ &#39;name&#39;,
+ &#39;negativereason_gold&#39;,
+ &#39;retweet_count&#39;,
+ &#39;text&#39;,
+ &#39;tweet_coord&#39;,
+ &#39;tweet_created&#39;,
+ &#39;tweet_location&#39;,
+ &#39;user_timezone&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are only concerned with the text and airline_sentiment columns as the purpose of this blog is to walkthrough a basic sentiment analysis pipeline, of course we can make use of other features to extract more information from the data if we wish to.</p>
+<p>If we look into the text columns, this is what some of them look like</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tweets</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    @VirginAmerica What @dhepburn said.                                                                                           
+1    @VirginAmerica plus you&#39;ve added commercials to the experience... tacky.                                                      
+2    @VirginAmerica I didn&#39;t today... Must mean I need to take another trip!                                                       
+3    @VirginAmerica it&#39;s really aggressive to blast obnoxious &#34;entertainment&#34; in your guests&#39; faces &amp;amp; they have little recourse
+4    @VirginAmerica and it&#39;s a really big bad thing about it                                                                       
+Name: text, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A quick division of data is show in the image below:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">![](</span>assets/img_2.png<span class="o">)</span>
 </pre></div>
 
     </div>
@@ -349,6 +707,14 @@ Apart from the model itself we also directly use Google's scripts to run our cla
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Although the data contains a much larger percentage of negative tweets, the other categories still have enough data in them. Hence we don’t have to perform any undersampling/oversampling operations.</p>
+<p>We also perform some pre processing to clean our data like getting rid of special characters, removing single characters which provide no value to us, eliminating extra spaces.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2>Preprocessing tweets</h2><p>We perfrom some basic cleaning on our text data using regular expressions.
@@ -360,11 +726,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">tweets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">tweets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="c1">#preprocessing </span>
@@ -392,7 +762,8 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -406,15 +777,59 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;negative&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;neutral&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;negative&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;neutral&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">]</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y_test</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="n">y_test</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> united your announcement for pre boarding only addresses mobility my disability requires me to travel with lot of stuff do preboard  1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Applying-Deep-Learning-using-BERT">Applying Deep Learning using BERT<a class="anchor-link" href="#Applying-Deep-Learning-using-BERT"> </a></h2><p>As mentioned before we would be using BERT and fine tune it to make predictions on our data.</p>
+<p>The diagram below shows how BERT fits into our workflow.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">![](</span>assets/img_3.png<span class="o">)</span>
 </pre></div>
 
     </div>
@@ -426,6 +841,14 @@ We then split our data into test and training sets.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Once we have cleaned our text data, all we have to do is to prepare it for consumption by the model. Depending on which implementation of BERT you want to use this step may differ. But all the approaches require us to encode our labels and tokenize the text. Both these functionalities are generally provided by the libraries offering the BERT implementation.</p>
+<p>Since we just want to fine tune the model, we don’t have to put in a lot of resources in training. A couple of epochs are good enough to give us good results.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Loading the model</p>
 
 </div>
@@ -434,11 +857,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;models/bert&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;models/bert&#39;</span>
 <span class="n">BERT_MODEL</span> <span class="o">=</span> <span class="s1">&#39;uncased_L-12_H-768_A-12&#39;</span>
 <span class="n">BERT_PRETRAINED_DIR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">/uncased_L-12_H-768_A-12&#39;</span>
 <span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">/outputs&#39;</span>
@@ -449,25 +876,31 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># keep track of the model name as a mlflow run tag</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="c1"># keep track of the model name as a mlflow run tag</span>
 <span class="n">mlflow</span><span class="o">.</span><span class="n">set_tag</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -482,11 +915,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">create_examples</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="k">def</span> <span class="nf">create_examples</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="c1">#Generate data for the BERT model. We nned data in this format before being fed for training</span>
     <span class="n">guid</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">set_type</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="n">examples</span> <span class="o">=</span> <span class="p">[]</span>
@@ -562,7 +999,8 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -576,11 +1014,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># log parameters before run</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="c1"># log parameters before run</span>
 <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;TRAIN_BATCH_SIZE&quot;</span><span class="p">,</span> <span class="n">TRAIN_BATCH_SIZE</span><span class="p">)</span>
 <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;EVAL_BATCH_SIZE&quot;</span><span class="p">,</span> <span class="n">EVAL_BATCH_SIZE</span><span class="p">)</span>
 <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">&quot;LEARNING_RATE&quot;</span><span class="p">,</span> <span class="n">LEARNING_RATE</span><span class="p">)</span>
@@ -594,7 +1036,8 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -608,11 +1051,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please wait...&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please wait...&#39;</span><span class="p">)</span>
 <span class="n">train_features</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">convert_examples_to_features</span><span class="p">(</span>
     <span class="n">train_examples</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&gt; Started training at </span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
@@ -631,32 +1078,29 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Started training at 2020-03-02 21:59:02.759879</p>
-<p>Finished training at 2020-03-02 23:11:47.571450</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Export-and-save-model-Variables-and-Protobuf">Export and save model Variables and Protobuf<a class="anchor-link" href="#Export-and-save-model-Variables-and-Protobuf"> </a></h2>
+<h3 id="Export-and-save-model-variables-and-protobuf">Export and save model variables and protobuf<a class="anchor-link" href="#Export-and-save-model-variables-and-protobuf"> </a></h3>
 </div>
 </div>
 </div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">serving_model_save_path</span> <span class="o">=</span> <span class="s1">&#39;models/saved_models&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">serving_model_save_path</span> <span class="o">=</span> <span class="s1">&#39;models/saved_models&#39;</span>
 
 
 <span class="k">def</span> <span class="nf">serving_input_receiver_fn</span><span class="p">():</span>
@@ -677,7 +1121,8 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -691,11 +1136,15 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">input_fn_builder</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">,</span> <span class="n">is_training</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="k">def</span> <span class="nf">input_fn_builder</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">,</span> <span class="n">is_training</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;Creates an `input_fn` closure to be passed to TPUEstimator.&quot;&quot;&quot;</span>
 
   <span class="n">all_input_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -748,18 +1197,23 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predict_examples</span> <span class="o">=</span> <span class="n">create_examples</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-show</span>
+
+<span class="n">predict_examples</span> <span class="o">=</span> <span class="n">create_examples</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
 
 <span class="n">predict_features</span> <span class="o">=</span> <span class="n">run_classifier</span><span class="o">.</span><span class="n">convert_examples_to_features</span><span class="p">(</span>
     <span class="n">predict_examples</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
@@ -776,10 +1230,18 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Results">Results<a class="anchor-link" href="#Results"> </a></h2><p>We get the following results for our model post training :</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -787,7 +1249,35 @@ We then split our data into test and training sets.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">![](</span>assets/img_4.png<span class="o">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our model doesn’t perform well when it comes to neutral sentiment. Possible reason for this could be the general ambiguity which comes in classifying a neutral emotion. Not to say the performance can’t be improved with some tweaking!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
       <span class="n">preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">prediction</span><span class="p">[</span><span class="s1">&#39;probabilities&#39;</span><span class="p">]))</span>
 </pre></div>
@@ -795,41 +1285,30 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of BERT is:&quot;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of BERT is:&quot;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
+</p>
+    </details>
 </div>
     
 
@@ -843,17 +1322,22 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1 Score of BERT is:&quot;</span><span class="p">,</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;macro&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1 Score of BERT is:&quot;</span><span class="p">,</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;macro&#39;</span><span class="p">))</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -867,34 +1351,44 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outputframe</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">sentence</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">old_model_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">pred_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">preds</span><span class="p">)))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">outputframe</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">sentence</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">old_model_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">pred_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">preds</span><span class="p">)))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -908,28 +1402,37 @@ We then split our data into test and training sets.</p>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">outputframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/airline_tweets.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">outputframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;output/airline_tweets.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_Precision &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#collapse-hide</span>
+
+<span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_Precision &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;precision&#39;</span><span class="p">])</span>
 <span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_recall &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;recall&#39;</span><span class="p">])</span> 
 <span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_f1-score &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;f1-score&#39;</span><span class="p">])</span>
 <span class="n">MLFLOW_CLIENT</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="n">mlflow_run_id</span><span class="p">,</span> <span class="s2">&quot;Avg_support &quot;</span><span class="p">,</span>  <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;macro avg&#39;</span><span class="p">][</span><span class="s1">&#39;support&#39;</span><span class="p">])</span> 
@@ -951,7 +1454,8 @@ We then split our data into test and training sets.</p>
     </div>
 </div>
 </div>
-
+</p>
+    </details>
 </div>
     
 
@@ -972,6 +1476,45 @@ We then split our data into test and training sets.</p>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interpreting-The-Model">Interpreting The Model<a class="anchor-link" href="#Interpreting-The-Model"> </a></h2><p>To better understand and improve our model we need some insights about how decisions are being made. One approach to do this is to use interpretability techniques.</p>
+<p>For our case, we make use of the library <a href="https://github.com/interpretml/interpret-text">interpret-text</a>. As this library supports only PyTorch we will retrain our model using pytorch. We then use this trained BERT model to run our interpretability algorithm.</p>
+<p>We use the <a href="https://www.microsoft.com/en-us/research/publication/towards-a-deep-and-unified-understanding-of-deep-neural-models-in-nlp/">Unified Information Explainer</a> for the task. Let us look at an example.</p>
+<p>The way the dashboard works is that we can move our slider to pick the ‘n’ most important features according to the model for making a certain prediction. It considers not just the word but it’s surrounding words as well.</p>
+<p>For the example we are focusing on what the model sees at the 12th and final classification layer.</p>
+<p>Sentence: @united yup it just happens way too often 5 times in the last 12 months</p>
+<p><strong>True Label</strong>: negative</p>
+<p><strong>Prediction</strong>: negative</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">![](</span>assets/img_5.png<span class="o">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that our model focuses the most around the part ‘way too often’ and correctly predicts that it conveys a negative emotion.</p>
+<p>We can effectively use this tool to look at a subset of sentences and tweak our model by looking at how it processes the sentences.</p>
+
+</div>
+</div>
+</div>
 </div>
 
 
@@ -984,7 +1527,7 @@ We then split our data into test and training sets.</p>
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/fastpages-test/fastpages/jupyter/2020/07/17/sentiment-analysis-demo.html" hidden></a>
+</script><a class="u-url" href="/fastpages-test/fastpages/jupyter/sentimentanalysis/machinelearning/naturallanguageprocessing/deeplearing/interpret-text/interpretability/bert/2020/07/17/sentiment-analysis-demo.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
